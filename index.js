@@ -1,6 +1,6 @@
 const fetch = require('isomorphic-fetch')
 
-class EthRpc{
+class IsoRpc{
   constructor(provider = "http://localhost:8545", fetchOptions = {}){
     this.provider = provider
   }
@@ -32,5 +32,5 @@ class EthRpc{
 }
 
 module.exports = function Rpc(provider, fetchOptions){
-  return new Proxy(new EthRpc(provider, fetchOptions),EthRpc)
+  return new Proxy(new IsoRpc(provider, fetchOptions),IsoRpc)
 }

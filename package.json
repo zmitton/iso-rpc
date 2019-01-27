@@ -1,6 +1,6 @@
 {
   "name": "isomorphic-rpc",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Javascript Object That Maps All Methods to RPC Calls as Promises (Isomorphic)",
   "main": "index.js",
   "scripts": {

@@ -1,4 +1,4 @@
-# Eth-Rpc
+# Isomorphic-Rpc
 Exposes a Javascript object that maps all methods to RPC calls using `Promises`"
 
 ## Web3.js Has Some Issues
