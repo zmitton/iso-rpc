@@ -1,5 +1,5 @@
 {
-  "name": "eth-rpc",
+  "name": "isomorphic-rpc",
   "version": "1.0.0",
   "description": "A Javascript Object That Maps All Methods to RPC Calls as Promises (Isomorphic)",
   "main": "index.js",
