@@ -1,0 +1,31 @@
+{
+  "name": "eth-rpc",
+  "version": "1.0.0",
+  "description": "A Javascript Object That Maps All Methods to RPC Calls as Promises (Isomorphic)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zmitton/eth-rpc.git"
+  },
+  "keywords": [
+    "rpc",
+    "ethereum",
+    "bitcoin",
+    "blockchain",
+    "web3",
+    "isomorphic",
+    "promises"
+  ],
+  "author": "Zac Mitton",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zmitton/eth-rpc/issues"
+  },
+  "homepage": "https://github.com/zmitton/eth-rpc#readme",
+  "dependencies": {
+    "isomorphic-fetch": "^2.2.1"
+  }
+}
