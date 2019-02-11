@@ -3,6 +3,7 @@ const fetch = require('isomorphic-fetch')
 class IsoRpc{
   constructor(provider = "http://localhost:8545", fetchOptions = {}){
     this.provider = provider
+    this.id = 1
   }
   static get(obj,prop){
     if(prop in obj){

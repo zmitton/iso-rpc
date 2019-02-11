@@ -1,6 +1,9 @@
 # Isomorphic-Rpc
 Exposes a Javascript object that maps all methods to RPC calls using `Promises`"
 
+## For Ethereum Applications
+In general this should support any RPC application, but I made it to simplify my ethereum applications and I've only used/tested it on the same.
+
 ## Web3.js Has Some Issues
 - Mostly it's *huge*
 - It doesn't follow the spec (i.e. spec has `eth_getBlockByHash`, web3 has only `getBlock`)
@@ -22,3 +25,29 @@ The use of this library should work identically in both Node and all desktop/mob
 This should probably work on *all* Javascript RPC applications because of its agnosticism to the actual methods being called.
 
 But I haven't tried that yet so let me know!
+
+Seems to be a good pattern because refactoring my code to use isomorphic-rpc is making tons of lines disappear.
+
+## Use
+```
+npm install iso-rpc
+```
+```javascript
+const Rpc = require('./iso-rpc')
+let rpc = new Rpc('http://localhost:8545') //for local node (default)
+// or  "https://mainnet.infura.io" or even "https://web3.gastracker.io" etc...
+
+rpc.web3_sha3("0x").then((hash)=>{ console.log(hash) }).catch((e)=>{console.log(e)})
+```
+or within an `async` function:
+```javascript
+let hash = await rpc.web3_sha3("0x")
+```
+
+## Docs
+The [JSON-RPC Page](https://github.com/ethereum/wiki/wiki/JSON-RPC) is the most up to date list of supported Ethereum RPC calls.
+
+Also the [RPC 2.0 Specification](https://www.jsonrpc.org/specification) could be useful in updating this package. If a PR will help it better supports the RPC spec, I'll merge it in.
+
+
+
