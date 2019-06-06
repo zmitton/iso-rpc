@@ -14,6 +14,7 @@ class IsoRpc{
           method: "POST",
           headers: {"Content-Type": "application/json"},
           body: JSON.stringify({
+            jsonrpc:"2.0",
             method:prop,
             params:params,
             id:obj.id++
