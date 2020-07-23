@@ -1,13 +1,26 @@
 # Isomorphic-Rpc
-Exposes a Javascript object that maps all methods to RPC calls using `Promises`"
+A (promise based) Javascript wrapper for clean JSON-RPC method calls
 
-## For Ethereum Applications
-In general this should support any RPC application, but I made it to simplify my ethereum applications and I've only used/tested it on the same.
+### What is JSON-RPC
+A standard format for HTTP requests (much like REST), that is used by most cryptocurrency servers.
 
-## Web3.js Has Some Issues
-- Mostly it's *huge*
-- It doesn't follow the spec (i.e. spec has `eth_getBlockByHash`, web3 has only `getBlock`)
-- It randomly prints some values as hex `string` ("0x1234") while others come back as `number` and for some odd reason `block.difficulty` is returned as a `string` of decimal digits (lol WAHT?)
+## For Example
+For instance a curl request like this:
+
+`curl -X POST --data '{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["latest",false],"id":1}' -H "Content-type:application/json" https://www.ethercluster.com/etc`
+
+Can be executed in javascript like this:
+
+`rpc.eth_getBlockByNumber("latest", false).then(console.log)` [see initialization steps below](https://www.npmjs.com/package/isomorphic-rpc#use)
+
+In general this should support any JSON-RPC application, but I made it to simplify my ethereum applications and I've only used/tested it on the same.
+
+
+
+### Use in place of Web3
+- because web3 is *huge*
+- web3 doesn't follow the spec (i.e. spec has `eth_getBlockByHash`, web3 has only `getBlock`)
+- web3 randomly prints some values as hex `string` ("0x1234") while others come back as `number` and for some odd reason `block.difficulty` is returned as a `string` of decimal digits (lol WAHT?)
 - New RPC methods like `getProof` are not supported (in web3 or other libraries) until each piece of software in the chain publishes a feature update to support it.
 
 ## Solution
@@ -21,24 +34,21 @@ The module is 37 lines of code. There is only 1 dependency (which branches into 
 ## Isomorphism
 The use of this library should work identically in both Node and all desktop/mobile Browsers (except Internet Explorer because bill gates is busy curing malaria)
 
-### Also
-This should probably work on *all* Javascript RPC applications because of its agnosticism to the actual methods being called.
-
-But I haven't tried that yet so let me know!
-
-Seems to be a good pattern because refactoring my code to use isomorphic-rpc is making tons of lines disappear.
-
 ## Use
 ```
-npm install iso-rpc
+npm install isomorphic-rpc
 ```
-```javascript
-const Rpc = require('./iso-rpc')
-let rpc = new Rpc('http://localhost:8545') //for local node (default)
-// or  "https://mainnet.infura.io" or even "https://web3.gastracker.io" etc...
 
-rpc.web3_sha3("0x").then((hash)=>{ console.log(hash) }).catch((e)=>{console.log(e)})
+```javascript
+const Rpc = require('isomorphic-rpc')
+let rpc = new Rpc('https://www.ethercluster.com/etc') // or default to "http://localhost:8545"
+// or  "https://mainnet.infura.io" or even "https://web3.gastracker.io" etc...
+rpc.web3_sha3("0x").then(console.log)
+
+rpc.eth_getBlockByNumber("latest", false).then(console.log)
+
 ```
+
 or within an `async` function:
 ```javascript
 let hash = await rpc.web3_sha3("0x")
